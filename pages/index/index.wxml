@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="userinfo">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称
+        </button>
+        <block wx:else>
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+        <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取用户手机号</button>
+    </view>
+    <swiper class="swiper-container" indicator-dots="true" indicator-color="rgba(0,0,0,.3)" autoplay="true" current="0"
+        interval="3000" duration="1000" circular="true">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item style="text-align: center">
+                <image class="" src="{{item}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- <cover-view class="time">00:00</cover-view> -->
+    <progress class="progress-content" percent="80" show-info stroke-width="6" backgroundColor="#09BB07" activeColor="pink" active></progress>
+    <button open-type="openSetting">咨询</button>
+    <checkbox-group bindchange="showCheckboxes">
+        <block wx:for="{{checkbox}}">
+            <checkbox value="{{item.name}}" checked="false">{{item.value}}</checkbox>
+        </block>
+    </checkbox-group>
+    <form bindsubmit="submitForm" bindreset="resetForm">
+        <switch name="switch" checked="false" type="switch|checkbox" />
+        <input type="text" name="inputtt" />
+        <button formType="submit">提交</button>
+    </form>
+    <switch id="babel1"></switch>
+    <label for="babel1">hhh</label>
+    <picker class="picker" mode="time">选择时间</picker>
+    <view class="usermotto">
+        <text class="user-motto">{{motto}}</text>
+        <use-component inner-text="new text" bind:attreventname="parentEvent">
+            <view>这里是插入到组件slot中的内容</view>
+        </use-component>
+    </view>
+</view>

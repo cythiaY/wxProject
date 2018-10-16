@@ -1,0 +1,5 @@
+<view class="inner {{innerText}}" >
+    {{innerText}}
+</view>
+<button bind:tap="childEvent">Show my name</button>
+<slot></slot>
